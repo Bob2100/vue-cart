@@ -1,28 +1,63 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <p>商品列表</p>
+    <table border="1px solid black" cellspacing="0">
+      <tr v-for="(good, index) in goods" :key="good.id">
+        <td>{{good.text}}</td>
+        <td>¥{{good.price}}</td>
+        <td>
+          <button @click="addToCart(index)">加入购物车</button>
+        </td>
+      </tr>
+    </table>
+    <!-- 使用组件 -->
+    <cart :name="name"></cart>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// 导入组件
+import Cart from './components/Cart';
+import axios from 'axios';
 
 export default {
   name: 'App',
+  // 注册组件
   components: {
-    HelloWorld
-  }
+    Cart
+  },
+  data() {
+    return {
+      isShow: false,
+      text: '',
+      price: '',
+      goods: [],
+      name: '我的购物车',
+      cart: []
+    }
+  },
+  async created () {
+    const res = await axios.get('/api/goods');
+    this.goods = res.data.list;
+  },
+  methods: {
+    addToCart(index) {
+      this.$bus.$emit('addToCart', this.goods[index]);
+    }
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  #app {
+    text-align: center;
+  }
+  .cart-good, table{
+    width: 500px;
+    margin: 0 auto;
+  }
+  .cart-good{
+    padding: 10px;
+    display: flex;
+  }
+  </style>

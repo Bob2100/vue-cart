@@ -1,5 +1,5 @@
 # vue-cart
-
+vue的基本使用，购物车小案例
 ## Project setup
 ```
 npm install
