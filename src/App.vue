@@ -14,6 +14,8 @@
     <cart :name="name"></cart>
     <form-test title="element ui 表单"></form-test>
     <s-button @click="handleClick"></s-button>
+    <s-input v-model="inputValue"></s-input>
+    <h1>{{ inputValue }}</h1>
   </div>
 </template>
 
@@ -23,6 +25,7 @@ import Cart from "./components/Cart";
 import axios from "axios";
 import FormTest from "./components/FormTest";
 import SButton from "./components/Button";
+import SInput from "./components/Input";
 
 export default {
   name: "App",
@@ -31,6 +34,7 @@ export default {
     Cart,
     FormTest,
     SButton,
+    SInput,
   },
   data() {
     return {
@@ -40,6 +44,7 @@ export default {
       goods: [],
       name: "我的购物车",
       cart: [],
+      inputValue: "",
     };
   },
   async created() {
