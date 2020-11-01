@@ -17,19 +17,23 @@
         <th>数量</th>
         <th>合计</th>
       </tr>
-      <tr v-for="c in cart.items" :key="c.good.id">
+      <tr v-for="(item, index) in cart.items" :key="item.good.id">
         <td>
           <input
             type="checkbox"
             class="item-checkbox"
-            :checked="c.active"
-            @click="check($event, c)"
+            :checked="item.active"
+            @click="check($event, item)"
           />
         </td>
-        <td>{{ c.good.text }}</td>
-        <td>¥{{ c.good.price }}</td>
-        <td>{{ c.count }}</td>
-        <td>¥{{ c.good.price * c.count }}</td>
+        <td>{{ item.good.text }}</td>
+        <td>¥{{ item.good.price }}</td>
+        <td>
+          <button @click="minus(index)">-</button>
+          {{item.count}}
+          <button @click="add(index)">+</button>
+        </td>
+        <td>¥{{ item.good.price * item.count }}</td>
       </tr>
     </table>
 
@@ -86,6 +90,18 @@ export default {
     }
   },
   methods: {
+    add(index){
+      this.cart.items[index].count++;
+    },
+    minus(index){
+      if(this.cart.items[index].count == 1){
+        if(window.confirm('确定从购物车删除？')){
+          this.cart.items.splice(index, 1);
+        }
+      }else{
+        this.cart.items[index].count--;
+      }
+    },
     deleteChecked() {
       if (window.confirm("确认删除？")) {
         for (let i = 0; i < this.cart.items.length; i++) {
