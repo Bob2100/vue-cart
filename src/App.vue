@@ -12,6 +12,7 @@
     </table>
     <!-- 使用组件 -->
     <cart :name="name"></cart>
+    <form-test></form-test>
   </div>
 </template>
 
@@ -19,12 +20,14 @@
 // 导入组件
 import Cart from './components/Cart';
 import axios from 'axios';
+import FormTest from './components/FormTest';
 
 export default {
   name: 'App',
   // 注册组件
   components: {
-    Cart
+    Cart,
+    FormTest
   },
   data() {
     return {
