@@ -13,6 +13,7 @@
     <!-- 使用组件 -->
     <cart :name="name"></cart>
     <form-test title="element ui 表单"></form-test>
+    <s-button @click="handleClick"></s-button>
   </div>
 </template>
 
@@ -21,6 +22,7 @@
 import Cart from "./components/Cart";
 import axios from "axios";
 import FormTest from "./components/FormTest";
+import SButton from "./components/Button";
 
 export default {
   name: "App",
@@ -28,6 +30,7 @@ export default {
   components: {
     Cart,
     FormTest,
+    SButton,
   },
   data() {
     return {
@@ -44,6 +47,9 @@ export default {
     this.goods = res.data.list;
   },
   methods: {
+    handleClick(obj) {
+      alert(obj.msg);
+    },
     addToCart(index) {
       this.$bus.$emit("addToCart", this.goods[index]);
     },
