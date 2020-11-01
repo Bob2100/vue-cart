@@ -50,6 +50,7 @@
 export default {
   props: ["name"],
   data() {
+    // 先从本地读取
     let cart = window.localStorage.getItem("cart");
     cart = cart
       ? JSON.parse(cart)
