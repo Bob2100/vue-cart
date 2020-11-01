@@ -97,6 +97,7 @@ export default {
       if(this.cart.items[index].count == 1){
         if(window.confirm('确定从购物车删除？')){
           this.cart.items.splice(index, 1);
+          this.updateCheckAllBoxStatus();
         }
       }else{
         this.cart.items[index].count--;
