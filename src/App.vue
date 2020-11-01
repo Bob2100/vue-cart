@@ -3,8 +3,8 @@
     <p>商品列表</p>
     <table border="1px solid black" cellspacing="0">
       <tr v-for="(good, index) in goods" :key="good.id">
-        <td>{{good.text}}</td>
-        <td>¥{{good.price}}</td>
+        <td>{{ good.text }}</td>
+        <td>¥{{ good.price }}</td>
         <td>
           <button @click="addToCart(index)">加入购物车</button>
         </td>
@@ -12,55 +12,56 @@
     </table>
     <!-- 使用组件 -->
     <cart :name="name"></cart>
-    <form-test></form-test>
+    <form-test title="element ui 表单"></form-test>
   </div>
 </template>
 
 <script>
 // 导入组件
-import Cart from './components/Cart';
-import axios from 'axios';
-import FormTest from './components/FormTest';
+import Cart from "./components/Cart";
+import axios from "axios";
+import FormTest from "./components/FormTest";
 
 export default {
-  name: 'App',
+  name: "App",
   // 注册组件
   components: {
     Cart,
-    FormTest
+    FormTest,
   },
   data() {
     return {
       isShow: false,
-      text: '',
-      price: '',
+      text: "",
+      price: "",
       goods: [],
-      name: '我的购物车',
-      cart: []
-    }
+      name: "我的购物车",
+      cart: [],
+    };
   },
-  async created () {
-    const res = await axios.get('/api/goods');
+  async created() {
+    const res = await axios.get("/api/goods");
     this.goods = res.data.list;
   },
   methods: {
     addToCart(index) {
-      this.$bus.$emit('addToCart', this.goods[index]);
-    }
+      this.$bus.$emit("addToCart", this.goods[index]);
+    },
   },
-}
+};
 </script>
 
 <style>
-  #app {
-    text-align: center;
-  }
-  .cart-good, table{
-    width: 500px;
-    margin: 0 auto;
-  }
-  .cart-good{
-    padding: 10px;
-    display: flex;
-  }
-  </style>
+#app {
+  text-align: center;
+}
+.cart-good,
+table {
+  width: 500px;
+  margin: 0 auto;
+}
+.cart-good {
+  padding: 10px;
+  display: flex;
+}
+</style>

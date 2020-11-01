@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>element表单</h1>
+    <h1>{{ title }}</h1>
 
     <el-form ref="form" :model="form" label-width="80px" :rules="rules">
       <el-form-item label="用户名" prop="name">
@@ -18,6 +18,9 @@
 
 <script>
 export default {
+  props: {
+    title: { type: String, required: true },
+  },
   data() {
     return {
       form: {
@@ -34,16 +37,16 @@ export default {
     };
   },
   methods: {
-      submit() {
-          this.$refs.form.validate(valid => {
-              if(valid){
-                  alert('登录成功！');
-              }else{
-                  alert('校验不通过！');
-                  return false;
-              }
-          });
-      }
+    submit() {
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          alert("登录成功！");
+        } else {
+          alert("校验不通过！");
+          return false;
+        }
+      });
+    },
   },
 };
 </script>
