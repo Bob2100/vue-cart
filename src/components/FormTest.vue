@@ -13,13 +13,25 @@
         <el-button type="primary" @click="submit()">登录</el-button>
       </el-form-item>
     </el-form>
+
+    <h3>自定义FormItem组件</h3>
+    <s-form-item label="用户名" prop="name" for="name">
+      <s-input v-model="form.name" id="name"></s-input>
+    </s-form-item>
   </div>
 </template>
 
 <script>
+import SFormItem from "./FormItem";
+import SInput from "./Input";
+
 export default {
   props: {
     title: { type: String, required: true },
+  },
+  components: {
+    SFormItem,
+    SInput,
   },
   data() {
     return {
@@ -51,5 +63,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

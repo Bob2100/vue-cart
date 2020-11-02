@@ -1,28 +1,32 @@
 <template>
-  <input type="text" :value="value" @input="inputHandler" />
+  <input :id="idValue" type="text" :value="inputValue" @input="inputHandler" />
 </template>
 
 <script>
 export default {
   props: {
-    param: {
+    value: {
+      type: String,
+      default: "",
+    },
+    id: {
       type: String,
       default: "",
     },
   },
   data() {
     return {
-      value: this.param,
+      inputValue: this.value,
+      idValue: this.id,
     };
   },
   methods: {
     inputHandler(e) {
-      this.value = e.target.value;
-      this.$emit("input", this.value);
+      this.inputValue = e.target.value;
+      this.$emit("input", this.inputValue);
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
