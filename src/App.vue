@@ -16,6 +16,9 @@
     <s-button @click="handleClick"></s-button>
     <s-input v-model="inputValue"></s-input>
     <h1>{{ inputValue }}</h1>
+    <s-window>
+      <h1>插槽的使用</h1>
+    </s-window>
   </div>
 </template>
 
@@ -26,6 +29,7 @@ import axios from "axios";
 import FormTest from "./components/FormTest";
 import SButton from "./components/Button";
 import SInput from "./components/Input";
+import SWindow from "./components/Window";
 
 export default {
   name: "App",
@@ -35,6 +39,7 @@ export default {
     FormTest,
     SButton,
     SInput,
+    SWindow,
   },
   data() {
     return {
