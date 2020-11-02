@@ -10,6 +10,7 @@
         </td>
       </tr>
     </table>
+
     <!-- 使用组件 -->
     <cart :name="name"></cart>
     <form-test title="element ui 表单"></form-test>
@@ -17,7 +18,13 @@
     <s-input v-model="inputValue"></s-input>
     <h1>{{ inputValue }}</h1>
     <s-window>
+      <template slot="head">
+        <h1>页面头</h1>
+      </template>
       <h1>插槽的使用</h1>
+      <template slot="foot">
+        <h1>页面尾</h1>
+      </template>
     </s-window>
   </div>
 </template>

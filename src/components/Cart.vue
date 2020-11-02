@@ -30,7 +30,7 @@
         <td>¥{{ item.good.price }}</td>
         <td>
           <button @click="minus(index)">-</button>
-          {{item.count}}
+          {{ item.count }}
           <button @click="add(index)">+</button>
         </td>
         <td>¥{{ item.good.price * item.count }}</td>
@@ -56,7 +56,7 @@ export default {
       ? JSON.parse(cart)
       : { items: [], allChecked: false, indeterminate: false };
     return {
-      cart
+      cart,
     };
   },
   watch: {
@@ -65,42 +65,42 @@ export default {
         //   数据持久化
         window.localStorage.setItem("cart", JSON.stringify(val));
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   created() {
-    this.$bus.$on("addToCart", good => {
-      const c = this.cart.items.find(v => v.good.id === good.id);
+    this.$bus.$on("addToCart", (good) => {
+      const c = this.cart.items.find((v) => v.good.id === good.id);
       c ? c.count++ : this.cart.items.push({ good, count: 1, active: false });
       this.updateCheckAllBoxStatus();
     });
   },
   computed: {
     activeItems() {
-      return this.cart.items.filter(item => item.active).length;
+      return this.cart.items.filter((item) => item.active).length;
     },
     totalItems() {
       return this.cart.items.length;
     },
     totalPrice() {
       let totalPrice = 0;
-      this.cart.items.forEach(item => {
+      this.cart.items.forEach((item) => {
         item.active ? (totalPrice += item.good.price * item.count) : null;
       });
       return totalPrice;
-    }
+    },
   },
   methods: {
-    add(index){
+    add(index) {
       this.cart.items[index].count++;
     },
-    minus(index){
-      if(this.cart.items[index].count == 1){
-        if(window.confirm('确定从购物车删除？')){
+    minus(index) {
+      if (this.cart.items[index].count == 1) {
+        if (window.confirm("确定从购物车删除？")) {
           this.cart.items.splice(index, 1);
           this.updateCheckAllBoxStatus();
         }
-      }else{
+      } else {
         this.cart.items[index].count--;
       }
     },
@@ -118,13 +118,13 @@ export default {
     },
     checkAll(event) {
       this.cart.allChecked = event.currentTarget.checked;
-      this.cart.items.forEach(item => {
+      this.cart.items.forEach((item) => {
         this.cart.allChecked ? (item.active = true) : (item.active = false);
       });
     },
     updateCheckAllBoxStatus() {
       let checkedItemCount = 0;
-      this.cart.items.forEach(item => {
+      this.cart.items.forEach((item) => {
         if (item.active) {
           checkedItemCount++;
         }
@@ -143,8 +143,8 @@ export default {
     check(event, item) {
       item.active = event.currentTarget.checked;
       this.updateCheckAllBoxStatus();
-    }
-  }
+    },
+  },
 };
 </script>
 
