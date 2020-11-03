@@ -18,6 +18,9 @@
     <s-form-item label="用户名" prop="name" for="name">
       <s-input v-model="form.name" id="name"></s-input>
     </s-form-item>
+    <s-form-item label="密码" prop="password" for="password">
+      <s-input v-model="form.password" id="password" type="password"></s-input>
+    </s-form-item>
   </div>
 </template>
 

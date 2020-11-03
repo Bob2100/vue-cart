@@ -14,8 +14,9 @@
     <!-- 使用组件 -->
     <cart :name="name"></cart>
 
+    <hr />
     <form-test title="element ui 表单"></form-test>
-
+    <hr />
     <s-button @click="handleClick"></s-button>
 
     <s-input v-model="inputValue"></s-input>

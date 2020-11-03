@@ -1,5 +1,5 @@
 <template>
-  <input :id="idValue" type="text" :value="inputValue" @input="inputHandler" />
+  <input :type="type" :id="id" :value="inputValue" @input="inputHandler" />
 </template>
 
 <script>
@@ -13,11 +13,14 @@ export default {
       type: String,
       default: "",
     },
+    type: {
+      type: String,
+      default: "text",
+    },
   },
   data() {
     return {
       inputValue: this.value,
-      idValue: this.id,
     };
   },
   methods: {
