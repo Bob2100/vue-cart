@@ -45,6 +45,11 @@ import SWindow from "./components/Window";
 
 export default {
   name: "App",
+  provide() {
+    return {
+      description: "自定义表单",
+    };
+  },
   // 注册组件
   components: {
     Cart,

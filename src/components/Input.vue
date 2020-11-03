@@ -1,9 +1,13 @@
 <template>
-  <input :type="type" :id="id" :value="inputValue" @input="inputHandler" />
+  <div>
+    {{ description }}
+    <input :type="type" :id="id" :value="inputValue" @input="inputHandler" />
+  </div>
 </template>
 
 <script>
 export default {
+  inject: ["description"],
   props: {
     value: {
       type: String,

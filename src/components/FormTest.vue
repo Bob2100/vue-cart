@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <h3>{{ title }}</h3>
 
     <el-form ref="form" :model="form" label-width="80px" :rules="rules">
       <el-form-item label="用户名" prop="name">
@@ -14,7 +14,7 @@
       </el-form-item>
     </el-form>
 
-    <h3>自定义FormItem组件</h3>
+    <h3>{{ description }}</h3>
     <s-form-item label="用户名" prop="name" for="name">
       <s-input v-model="form.name" id="name"></s-input>
     </s-form-item>
@@ -29,6 +29,7 @@ import SFormItem from "./FormItem";
 import SInput from "./Input";
 
 export default {
+  inject: ["description"],
   props: {
     title: { type: String, required: true },
   },
