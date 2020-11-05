@@ -18,7 +18,7 @@ export default {
   methods: {
     next() {
       if (!this.personGenerator) {
-        this.personGenerator = new this.PersonGenerator();
+        this.personGenerator = this.PersonGenerator();
       }
       const result = this.personGenerator.next();
       this.person = result.value;
@@ -27,7 +27,12 @@ export default {
     *PersonGenerator() {
       yield "Bob";
       yield "Tom";
+      yield* this.ToolGenerator();
       yield "Jack";
+    },
+    *ToolGenerator() {
+      yield "刀子";
+      yield "叉子";
     },
   },
 };
