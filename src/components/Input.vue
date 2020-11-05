@@ -1,8 +1,5 @@
 <template>
-  <div>
-    {{ description }}
-    <input :type="type" :id="id" :value="inputValue" @input="inputHandler" />
-  </div>
+  <input :type="type" :id="id" :value="inputValue" @input="inputHandler" />
 </template>
 
 <script>
@@ -30,7 +27,10 @@ export default {
   methods: {
     inputHandler(e) {
       this.inputValue = e.target.value;
+      // 通知父组件值更新
       this.$emit("input", this.inputValue);
+      // 通知FormItem做校验
+      this.$parent.$emit("validate", this.inputValue);
     },
   },
 };
