@@ -5,5 +5,16 @@
     <h3>msg:{{ $route.params.msg }}</h3>
     <h3>id-params:{{ $route.params.id }}</h3>
     <h3>id-query:{{ $route.query.id }}</h3>
+    <h3>来自prop: {{ foo }}</h3>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    foo: {
+      type: String,
+      default: "",
+    },
+  },
+};
+</script>
