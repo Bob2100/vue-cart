@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-function paramFunc({ params, query}) {
+function paramFunc({ params, query }) {
   return {
     foo: '来自prop',
     msg: params.msg,
@@ -17,15 +17,25 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-  },
-  {
-    path: '/about/:msg/:id',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    props: paramFunc
+  }, {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue'),
+  }, {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/Dashboard.vue'),
+    children: [
+      {
+        path: 'about/:msg/:id',
+        name: 'About',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+        props: paramFunc
+      },
+    ]
   }
 ]
 

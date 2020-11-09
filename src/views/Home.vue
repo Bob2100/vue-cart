@@ -20,7 +20,7 @@ export default {
       this.$router.push({
         name: "About",
         params: {
-          id: 1,
+          id: "1",
           msg: "from home",
         },
       });
