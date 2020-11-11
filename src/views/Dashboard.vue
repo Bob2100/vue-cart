@@ -5,19 +5,26 @@
     <router-view></router-view>
     <button @click="inc">Increase</button>
     <button @click="incAsync">incAsync</button>
-    <p>state.count: {{ $store.state.count }}</p>
-    <p>金额: {{ $store.getters.money }}</p>
+    <p>state.count: {{ count }}</p>
+    <p>金额: {{ money }}</p>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapState, mapMutations, mapActions } from "vuex";
 export default {
+  computed: {
+    ...mapGetters(["money"]),
+    ...mapState(["count"]),
+  },
   methods: {
+    ...mapActions(["increaseAsync"]),
+    ...mapMutations(["increase"]),
     inc() {
-      this.$store.commit("increase");
+      this.increase();
     },
     incAsync() {
-      this.$store.dispatch("increaseAsync");
+      this.increaseAsync();
     },
   },
 };
