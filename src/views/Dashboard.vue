@@ -4,6 +4,7 @@
     <!-- 父组件路由出口，负责显示子路由内容 -->
     <router-view></router-view>
     <button @click="inc">Increase</button>
+    <button @click="incAsync">incAsync</button>
     <p>state.count: {{ $store.state.count }}</p>
     <p>金额: {{ $store.getters.money }}</p>
   </div>
@@ -14,6 +15,9 @@ export default {
   methods: {
     inc() {
       this.$store.commit("increase");
+    },
+    incAsync() {
+      this.$store.dispatch("increaseAsync");
     },
   },
 };

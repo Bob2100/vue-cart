@@ -17,7 +17,13 @@ export default new Vuex.Store({
       return `${state.count}元`;
     }
   },
+  // 异步操作时使用
   actions: {
+    increaseAsync({ commit }) {
+      setTimeout(() => {
+        commit('increase');
+      }, 5000);
+    }
   },
   modules: {
   }
