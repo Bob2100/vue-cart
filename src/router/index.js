@@ -25,6 +25,13 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue'),
+    beforeEnter(to, from, next) {
+      if (window.isLogin) {
+        next();
+      } else {
+        next(`/login?redirect=${to.path}`);
+      }
+    },
     children: [
       {
         path: 'about/:msg/:id',
@@ -48,15 +55,16 @@ const router = new VueRouter({
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
   console.log(to);
-  if (to.path != '/login') {
-    if (window.isLogin) {
-      next();
-    } else {
-      next(`/login?redirect=${to.path}`);
-    }
-  } else {
-    next();
-  }
+  // if (to.path != '/login') {
+  //   if (window.isLogin) {
+  //     next();
+  //   } else {
+  //     next(`/login?redirect=${to.path}`);
+  //   }
+  // } else {
+  //   next();
+  // }
+  next();
 });
 
 export default router
