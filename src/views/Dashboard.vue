@@ -5,6 +5,7 @@
     <router-view></router-view>
     <button @click="inc">Increase</button>
     <p>state.count: {{ $store.state.count }}</p>
+    <p>金额: {{ $store.getters.money }}</p>
   </div>
 </template>
 

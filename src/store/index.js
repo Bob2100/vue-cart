@@ -12,6 +12,11 @@ export default new Vuex.Store({
       state.count++;
     }
   },
+  getters: {
+    money(state) {
+      return `${state.count}元`;
+    }
+  },
   actions: {
   },
   modules: {
