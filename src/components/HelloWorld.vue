@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3>{{ msg }}</h3>
+    <p>state.count: {{ $store.state.count }}</p>
   </div>
 </template>
 
