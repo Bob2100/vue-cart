@@ -29,11 +29,12 @@ export default {
     },
   },
   beforeRouteEnter(to, from, next) {
-    if (window.isLogin) {
-      next();
-    } else {
-      next(`/login?redirect=${to.path}`);
-    }
+    // if (window.isLogin) {
+    //   next();
+    // } else {
+    //   next(`/login?redirect=${to.path}`);
+    // }
+    next();
   },
 };
 </script>

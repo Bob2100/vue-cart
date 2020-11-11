@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '../store/index'
+
 
 Vue.use(VueRouter)
 
@@ -25,13 +27,13 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue'),
-    // beforeEnter(to, from, next) {
-    //   if (window.isLogin) {
-    //     next();
-    //   } else {
-    //     next(`/login?redirect=${to.path}`);
-    //   }
-    // },
+    beforeEnter(to, from, next) {
+      if (store.state.isLogin) {
+        next();
+      } else {
+        next(`/login?redirect=${to.path}`);
+      }
+    },
     children: [
       {
         path: 'about/:msg/:id',

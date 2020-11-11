@@ -5,12 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    count: 1
+    count: 1,
+    isLogin: false,
   },
   mutations: {
     increase(state) {
       state.count++;
-    }
+    },
+    login(state) {
+      state.isLogin = true;
+    },
+    logout(state) {
+      state.isLogin = false;
+    },
   },
   getters: {
     money(state) {
@@ -23,6 +30,14 @@ export default new Vuex.Store({
       setTimeout(() => {
         commit('increase');
       }, 5000);
+    },
+    submitLogin({ commit }) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          commit('login');
+          resolve();
+        }, 5000);
+      });
     }
   },
   modules: {

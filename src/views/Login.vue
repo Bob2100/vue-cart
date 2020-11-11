@@ -8,14 +8,18 @@
 <script>
 export default {
   methods: {
-    login() {
+    async login() {
       // 登录成功
-      window.isLogin = true;
-      const { redirect } = this.$route.query;
-      if (redirect) {
-        this.$router.push(redirect);
+      await this.$store.dispatch("submitLogin");
+      if (this.$store.state.isLogin) {
+        const { redirect } = this.$route.query;
+        if (redirect) {
+          this.$router.push(redirect);
+        } else {
+          this.$router.push("/");
+        }
       } else {
-        this.$router.push("/");
+        alert("登录失败！");
       }
     },
   },
