@@ -28,5 +28,12 @@ export default {
       default: "",
     },
   },
+  beforeRouteEnter(to, from, next) {
+    if (window.isLogin) {
+      next();
+    } else {
+      next(`/login?redirect=${to.path}`);
+    }
+  },
 };
 </script>

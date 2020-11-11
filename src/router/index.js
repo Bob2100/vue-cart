@@ -25,13 +25,13 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue'),
-    beforeEnter(to, from, next) {
-      if (window.isLogin) {
-        next();
-      } else {
-        next(`/login?redirect=${to.path}`);
-      }
-    },
+    // beforeEnter(to, from, next) {
+    //   if (window.isLogin) {
+    //     next();
+    //   } else {
+    //     next(`/login?redirect=${to.path}`);
+    //   }
+    // },
     children: [
       {
         path: 'about/:msg/:id',
