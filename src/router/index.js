@@ -43,6 +43,20 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  if (to.path != '/login') {
+    if (window.isLogin) {
+      next();
+    } else {
+      next(`/login?redirect=${to.path}`);
+    }
+  } else {
+    next();
+  }
+});
 
 export default router
